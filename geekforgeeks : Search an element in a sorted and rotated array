@@ -1,0 +1,71 @@
+#include <iostream> 
+using namespace std; 
+int pivotelement(int arr[], int start, int end, int key); 
+int pivot(int arr[], int n, int key) 
+{
+  int s=0,e=n-1,ans=0; 
+  int mid=s+(e-s)/2; 
+
+  while(s <= e) 
+    { 
+      if(arr[mid] > arr[n-1]) 
+      {
+        s = mid + 1; 
+      } 
+      else
+      { 
+        ans = mid; 
+        e = mid -1; 
+      } 
+      mid=s+(e-s)/2; 
+    } 
+  int ans1=pivotelement(arr, 0, ans-1, key); 
+  int ans2=pivotelement(arr, ans, n-1, key); 
+
+  if(ans1 > -1) 
+  {
+    return ans1; 
+  } 
+  else if(ans2 > -1) 
+  {
+    return ans2; 
+  }
+  else 
+  {
+    return -1; 
+  }
+} 
+
+int pivotelement(int arr[], int start, int end, int key)
+{
+  int mid=start+(end-start)/2; 
+
+  while(start <= end) 
+    {
+      if(arr[mid] == key) 
+      {
+        return mid; 
+      } 
+      else if(arr[mid] > key) 
+      {
+        end = mid -1; 
+      } 
+      else 
+      {
+        start = mid + 1;  
+      } 
+      mid=start+(end-start)/2; 
+    } 
+  return -1; 
+}
+int main() {
+    int arr[]={5, 6, 7, 8, 9, 10, 1, 2, 3}; 
+  int key=10; 
+  int ans=pivot(arr, 9, key); 
+
+  cout << ans << endl; 
+    return 0;
+}  
+
+// time complexity : o(logn) 
+// space complexity : o(1) 
