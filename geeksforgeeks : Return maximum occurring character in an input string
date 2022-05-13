@@ -1,0 +1,43 @@
+#include <bits/stdc++.h>
+using namespace std; 
+
+char occurring(string s) 
+{
+  int arr[26]={0},ans=INT_MIN; 
+ char sol; 
+  for(int i=0;i<s.length();i++) 
+    {
+      char ch=s[i]; 
+      if(ch >= 'a' && ch <= 'z') 
+      {
+      int index=ch-'a'; 
+      arr[index]++; 
+        } 
+      else 
+      {
+        int index=ch-'A'; 
+      arr[index]++; 
+      }
+    } 
+
+  for(int i=0;i<26;i++) 
+    { 
+      if(ans < arr[i]) 
+      { 
+        ans = arr[i]; 
+        sol = i + 'a'; 
+      }
+    } 
+  return sol; 
+}
+int main() {
+    string s="aaaaaabccc"; 
+
+    char ans=occurring(s); 
+
+  cout << ans << endl; 
+    return 0;
+} 
+
+// time complexity : o(n) 
+// space complexity : o(1) 
