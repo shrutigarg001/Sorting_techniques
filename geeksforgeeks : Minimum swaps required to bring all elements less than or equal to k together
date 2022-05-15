@@ -1,0 +1,50 @@
+#include <bits/stdc++.h>
+using namespace std; 
+
+int minimumswaps(int arr[], int n, int k) 
+{
+  int count=0,bad=0; 
+
+  for(int i=0;i<n;i++) 
+    {
+      if(arr[i] <= k) 
+      {
+        count++; 
+      }
+    } 
+ //cout << count;
+  for(int i=0;i<count;i++) 
+    {
+      if(arr[i] > k) 
+      {
+        bad++; 
+      }
+    } 
+
+  int ans=bad; 
+  for(int i=1;i<(n-count);i++) 
+    {
+      if(arr[i-1] > k) 
+      {
+        bad--; 
+      } 
+      if(arr[i+(count-1)] > k) 
+      {
+        bad++; 
+      } 
+
+      ans = min(ans, bad); 
+    } 
+
+  return ans; 
+}
+int main() {
+    int arr[7]={2, 7, 9, 5, 8, 7, 4}; 
+    int ans=minimumswaps(arr, 7, 5); 
+
+    cout << ans; 
+    return 0;
+} 
+
+// time complexity : o(n) 
+// space complexity : o(1) 
