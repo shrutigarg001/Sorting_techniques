@@ -1,0 +1,38 @@
+#include <bits/stdc++.h>
+using namespace std; 
+
+bool sum_zero(int arr[], int n) 
+{
+  unordered_map<int, int> m; 
+
+  int sum=0; 
+  for(int i=0; i<n; i++) 
+    {
+      sum = sum + arr[i]; 
+
+      if(m.find(sum) != m.end()) 
+      {
+        return true; 
+      } 
+
+      m[sum]++; 
+    } 
+
+  return false; 
+}
+int main() {
+    int arr[]={4, 2, -3, 1, 6, 0}; 
+
+    if(sum_zero(arr, 6) == true) 
+    {
+      cout << " present " << endl; 
+    } 
+    else 
+    {
+      cout << " not present " << endl; 
+    }
+    return 0;
+} 
+
+// time complexity : o(n) 
+// space complexity : o(n) 
