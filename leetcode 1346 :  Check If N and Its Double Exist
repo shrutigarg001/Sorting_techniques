@@ -1,0 +1,49 @@
+class Solution {
+public: 
+    
+    bool bin_search(vector<int>& arr, int s, int e, int target) 
+    { 
+        while(s <= e) 
+        {
+            int mid=s+((e-s)/2); 
+            
+            if(arr[mid] == target) 
+            { 
+                cout << s << " " << e; 
+                return true; 
+        }
+            else if(arr[mid] > target) 
+                e = mid - 1; 
+            else 
+                s = mid + 1; 
+        } 
+        return false; 
+    } 
+    
+    bool checkIfExist(vector<int>& arr) {
+        int n=arr.size(); 
+        
+        sort(arr.begin(), arr.end()); 
+        
+        int ans=0; 
+        
+        for(int i=0;i<n;i++) 
+        {
+            if(arr[i] >= 0) 
+            { 
+              if(bin_search(arr, i+1, n-1, 2*arr[i])) 
+               return true; 
+            } 
+            else if((arr[i] < 0) && (arr[i] % 2 == 0)) 
+                 {
+             if(bin_search(arr, i+1, n-1, arr[i]/2)) 
+               return true; 
+            }
+        } 
+        
+        return false; 
+    }
+}; 
+
+// time complexity : o(nlogn) 
+space complexity : o(1) 
