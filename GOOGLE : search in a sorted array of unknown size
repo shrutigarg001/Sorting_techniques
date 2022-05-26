@@ -1,0 +1,60 @@
+#include <bits/stdc++.h>
+using namespace std; 
+
+bool binary_se(int arr[], int start, int end, int target) 
+{
+  while(start <= end) 
+    {
+      int mid=start+((end-start)/2); 
+      if(arr[mid] == target) 
+      {
+        return true; 
+      } 
+      else if(arr[mid] > target) 
+      {
+        end = mid - 1; 
+      } 
+      else 
+      {
+        start = mid + 1; 
+      }
+    } 
+
+  return false; 
+}
+bool target(int arr[], int n, int target) 
+{
+  int s=0;
+  int e=1; 
+  int val=arr[s]; 
+
+  while(val < target) 
+    {
+      s = e; 
+      e = 2 * e; 
+      val = arr[e]; 
+    } 
+
+  if(binary_se(arr, s, e, target)) 
+  {
+    return true; 
+  } 
+
+  return false; 
+}
+int main() {
+    int arr[9]={3, 7, 13, 18, 24, 30, 34, 37, 40}; 
+
+    if(target(arr, 9, 33) == true) 
+    {
+      cout << "present "; 
+    } 
+    else 
+    {
+      cout << "not present "; 
+    }
+    return 0;
+} 
+
+// time complexity : o(logn) 
+// space complexity : o(1) 
